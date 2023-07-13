@@ -26,6 +26,7 @@ using BootstrapOverride;
 )]
 [assembly: MelonID($"dev.millzy.{nameof(BootstrapOverride)}")]
 [assembly: MelonGame("Stress Level Zero", "BONELAB")]
+[assembly: MelonIncompatibleAssemblies("MenuSkipper")]
 
 [assembly: VerifyLoaderVersion("0.5.7")]
 
