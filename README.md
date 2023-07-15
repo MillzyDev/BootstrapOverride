@@ -8,6 +8,8 @@
 
 A BONELAB mod that overrides the default Scene Bootstrapper, allowing you to customise what level you load into first.
 
+### __Requires Boneject__
+
 ### ⚠️ This mod is NOT compatible with [MenuSkipper](https://bonelab.thunderstore.io/package/timmie/MenuSkipper/), please uninstall it to use this. ⚠️
 *BootstrapOverride* works in a similar way to *MenuSkipper*, having both installed may cause problems.
 

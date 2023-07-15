@@ -1,9 +1,10 @@
 {
-  "name": "Bootstrap Override",
-  "version_number": "0.1.0",
+  "name": "BootstrapOverride",
+  "version_number": "0.2.0",
   "website_url": "https://github.com/MillzyDev/BootstrapOverride",
   "description": "Overrides the default Scene Bootstrapper, allowing you to customise what level you load into first.",
   "dependencies": [
-    "LavaGang-MelonLoader-0.5.7"
+    "LavaGang-MelonLoader-0.5.7",
+    "Millzy-Boneject-2.0.0"
   ]
 }

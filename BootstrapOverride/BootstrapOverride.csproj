@@ -9,7 +9,7 @@
         <ProjectGuid>{93B4FEA7-3405-4B11-BDFD-A95473C7F7E6}</ProjectGuid>
         <OutputType>Library</OutputType>
         <AppDesignerFolder>Properties</AppDesignerFolder>
-        <RootNamespace>MenuSkip</RootNamespace>
+        <RootNamespace>BootstrapOverride</RootNamespace>
         <AssemblyName>BootstrapOverride</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
@@ -39,20 +39,23 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Reference Include="0Harmony">
-            <HintPath>$(BonelabDir)\MelonLoader\0Harmony.dll</HintPath>
-        </Reference>
         <Reference Include="Assembly-CSharp">
             <HintPath>$(BonelabDir)\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
         </Reference>
         <Reference Include="Assembly-CSharp-firstpass">
             <HintPath>$(BonelabDir)\MelonLoader\Managed\Assembly-CSharp-firstpass.dll</HintPath>
         </Reference>
+        <Reference Include="Boneject">
+          <HintPath>$(BonelabDir)\Mods\Boneject.dll</HintPath>
+        </Reference>
         <Reference Include="Il2Cppmscorlib">
             <HintPath>$(BonelabDir)\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
         </Reference>
         <Reference Include="Il2CppSystem">
             <HintPath>$(BonelabDir)\MelonLoader\Managed\Il2CppSystem.dll</HintPath>
+        </Reference>
+        <Reference Include="Ninject">
+          <HintPath>$(BonelabDir)\UserLibs\Ninject.dll</HintPath>
         </Reference>
         <Reference Include="SLZ.Marrow.SDK">
             <HintPath>$(BonelabDir)\MelonLoader\Managed\SLZ.Marrow.SDK.dll</HintPath>
@@ -85,11 +88,13 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Include="Config.cs" />
-        <Compile Include="HarmonyPatches\SceneBootstrapper_BonelabPatch.cs" />
+        <Compile Include="Configuration\Config.cs" />
+        <Compile Include="LevelOverrider.cs" />
+        <Compile Include="Managers\LevelCrateManager.cs" />
         <Compile Include="Mod.cs" />
+        <Compile Include="Modules\BOAppModule.cs" />
+        <Compile Include="Modules\BOSceneBootstrapperModule.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="CrateFinder.cs" />
     </ItemGroup>
 
     <ItemGroup>
@@ -114,23 +119,17 @@
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 
     <Target Name="PostBuildCopy" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll;$(OutputPath)\$(AssemblyName).pdb" 
-              DestinationFolder="$(BonelabDir)\Mods\" />
+        <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll;$(OutputPath)\$(AssemblyName).pdb" DestinationFolder="$(BonelabDir)\Mods\" />
         
-        <Message Text="Coppied files to BONELAB installation." 
-                 Importance="high" />
+        <Message Text="Coppied files to BONELAB installation." Importance="high" />
     </Target>
 
     <Target Name="PostBuildThunderstore" AfterTargets="PostBuildEvent" Condition="'$(Configuration)' == 'Release'">
-        <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll;$(OutputPath)\$(AssemblyName).pdb" 
-              DestinationFolder="$(OutputPath)\StagingArea\Mods\" />
+        <Copy SourceFiles="$(OutputPath)\$(AssemblyName).dll;$(OutputPath)\$(AssemblyName).pdb" DestinationFolder="$(OutputPath)\StagingArea\Mods\" />
         
-        <Copy SourceFiles="$(OutputPath)\icon.png;$(OutputPath)\manifest.json;$(OutputPath)\README.md" 
-              DestinationFolder="$(OutputPath)\StagingArea\" />
+        <Copy SourceFiles="$(OutputPath)\icon.png;$(OutputPath)\manifest.json;$(OutputPath)\README.md" DestinationFolder="$(OutputPath)\StagingArea\" />
         
-        <ZipDirectory SourceDirectory="$(OutputPath)\StagingArea\" 
-                      DestinationFile="$(OutputPath)\$(AssemblyName).zip" 
-                      Overwrite="true" />
+        <ZipDirectory SourceDirectory="$(OutputPath)\StagingArea\" DestinationFile="$(OutputPath)\$(AssemblyName).zip" Overwrite="true" />
         
         <Message Text="Created Thunderstore Archive" Importance="high" />
     </Target>
