@@ -13,14 +13,14 @@ using BootstrapOverride;
 [assembly: AssemblyTrademark(null!)]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
-[assembly: AssemblyVersion("0.1.0.0")]
-[assembly: AssemblyFileVersion("0.1.0")]
+[assembly: AssemblyVersion("0.2.0.0")]
+[assembly: AssemblyFileVersion("0.2.0")]
 [assembly: NeutralResourcesLanguage("en")]
 
 [assembly: MelonInfo(
     typeof(Mod),
     nameof(BootstrapOverride),
-    "0.1.0",
+    "0.2.0",
     "Millzy",
     $"https://github.com/MillzyDev/MenuSkip/releases/latest/download/{nameof(BootstrapOverride)}.zip"
 )]
