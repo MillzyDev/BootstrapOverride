@@ -1,24 +1,20 @@
-﻿using MelonLoader;
+﻿using Boneject;
+using Boneject.Attributes;
+using BootstrapOverride.Configuration;
+using BootstrapOverride.Modules;
 
 namespace BootstrapOverride
 {
-    public sealed class Mod : MelonMod
+    public sealed class Mod : InjectableMelonMod
     {
-        private HarmonyLib.Harmony _harmony = null!;
-
-        public override void OnInitializeMelon()
+        [OnInitialize]
+        // ReSharper disable once UnusedMember.Global
+        public void OnInitializeMod(Bonejector bonejector)
         {
-            _harmony = new HarmonyLib.Harmony($"dev.millzy.{nameof(BootstrapOverride)}");
-        }
-
-        public override void OnLateInitializeMelon()
-        {
-            _harmony.PatchAll();
-        }
-
-        public override void OnDeinitializeMelon()
-        {
-            _harmony.UnpatchSelf();
+            Config config = Config.Load();
+            
+            bonejector.Load<BOAppModule>(Context.App, config);
+            bonejector.Load<BOSceneBootstrapperModule>(Context.SceneBootstrapper);
         }
     }
 }
