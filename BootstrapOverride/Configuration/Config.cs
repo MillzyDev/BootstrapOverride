@@ -2,9 +2,9 @@
 using MelonLoader;
 using Newtonsoft.Json;
 
-namespace BootstrapOverride
+namespace BootstrapOverride.Configuration
 {
-    internal sealed class Config
+    public sealed class Config
     {
         private static readonly string s_configPath =
             Path.Combine(MelonUtils.UserDataDirectory, $"{nameof(BootstrapOverride)}.json");
